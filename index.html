@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Futuristic Minimal</title>
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --bg-color: #050505;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --text-main: #e0e0e0;
+            --text-muted: #888888;
+            --accent-color: #00f3ff; /* Neon Cyan */
+            --accent-glow: rgba(0, 243, 255, 0.4);
+            --font-main: 'Inter', sans-serif;
+            --font-header: 'Orbitron', sans-serif; /* Futuristic Header Font */
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Import Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@500;700&display=swap');
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-header);
+            color: #fff;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: var(--accent-color);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            text-decoration: none;
+            font-family: var(--font-header);
+            letter-spacing: 1px;
+            transition: var(--transition);
+            background: transparent;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background: var(--accent-color);
+            color: #000;
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* --- SCROLL ANIMATION CLASSES --- */
+        .hidden {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(5, 5, 5, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: var(--font-header);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        
+        .logo span { color: var(--accent-color); }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+            text-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        /* --- HERO SECTION --- */
+        #home {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 243, 255, 0.05) 0%, transparent 60%);
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero-content .highlight {
+            color: var(--accent-color);
+            text-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- ABOUT ME --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text p { margin-bottom: 20px; color: #ccc; }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .tech-badge {
+            padding: 8px 15px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            font-size: 0.85rem;
+            color: var(--accent-color);
+        }
+
+        /* --- RESUME --- */
+        .resume-item {
+            background: var(--card-bg);
+            padding: 30px;
+            margin-bottom: 20px;
+            border-left: 3px solid var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .resume-item:hover {
+            transform: translateX(10px);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .resume-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .resume-role { font-weight: bold; font-size: 1.2rem; color: #fff; }
+        .resume-date { color: var(--text-muted); font-size: 0.9rem; }
+        .resume-company { color: var(--accent-color); margin-bottom: 10px; display: block; }
+
+        /* --- PROJECTS --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            transition: var(--transition);
+            border-radius: 8px;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px -10px rgba(0, 243, 255, 0.2);
+        }
+
+        .project-img-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #111, #222);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #444;
+            font-family: var(--font-header);
+        }
+
+        .project-content { padding: 25px; }
+        .project-title { font-size: 1.4rem; margin-bottom: 10px; color: #fff; }
+        .project-desc { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 20px; }
+        
+        .project-links a {
+            color: #fff;
+            margin-right: 15px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        /* --- ACHIEVEMENTS --- */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .achievement-card {
+            text-align: center;
+            padding: 40px 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: var(--card-bg);
+            border-radius: 10px;
+        }
+        
+        .achievement-icon {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* --- CONTACT --- */
+        .contact-container {
+            display: flex;
+            gap: 50px;
+        }
+
+        .contact-form {
+            flex: 1;
+        }
+
+        .form-group { margin-bottom: 20px; }
+        
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid #333;
+            color: #fff;
+            font-family: var(--font-main);
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--accent-color);
+            background: rgba(0, 243, 255, 0.05);
+        }
+
+        textarea { height: 150px; resize: none; }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 50px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .about-grid, .contact-container { grid-template-columns: 1fr; }
+            .nav-links { display: none; } /* Simple hide for mobile example */
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo">[NAME]<span>.DEV</span></div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#resume">Resume</a>
+                <a href="#projects">Projects</a>
+                <a href="#achievements">Awards</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home">
+        <div class="container hero-content hidden">
+            <h1>I BUILD THE <br><span class="highlight">FUTURE.</span></h1>
+            <p>Engineer. Developer. Innovator. Crafting high-performance solutions for the digital age.</p>
+            <a href="#projects" class="btn">VIEW WORK</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="hidden">About Me</h2>
+            <div class="about-grid hidden">
+                <div class="about-text">
+                    <p>I am a passionate developer focusing on scalable systems and sleek interfaces. With a background in engineering, I bridge the gap between complex backend logic and smooth user experiences.</p>
+                    <p>My approach is simple: clean code, modern tools, and user-centric design.</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">JavaScript</span>
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">Node.js</span>
+                        <span class="tech-badge">AWS</span>
+                        <span class="tech-badge">C++</span>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div style="width:100%; height:300px; border: 2px solid var(--accent-color); box-shadow: 10px 10px 0 rgba(0,243,255,0.1); display:flex; align-items:center; justify-content:center; color:var(--accent-color);">
+                        [YOUR IMAGE]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="resume">
+        <div class="container">
+            <h2 class="hidden">Resume</h2>
+            
+            <div class="hidden">
+                <h3 style="margin-bottom: 20px; color: var(--text-muted);">EXPERIENCE</h3>
+                
+                <div class="resume-item">
+                    <div class="resume-header">
+                        <span class="resume-role">Senior Engineer</span>
+                        <span class="resume-date">2023 - Present</span>
+                    </div>
+                    <span class="resume-company">Tech Corp Inc.</span>
+                    <p>Leading development of scalable microservices and optimizing system architecture.</p>
+                </div>
+
+                <div class="resume-item">
+                    <div class="resume-header">
+                        <span class="resume-role">Junior Developer</span>
+                        <span class="resume-date">2021 - 2023</span>
+                    </div>
+                    <span class="resume-company">Startup Studio</span>
+                    <p>Developed frontend interfaces and integrated RESTful APIs for fintech solutions.</p>
+                </div>
+            </div>
+
+            <div class="hidden" style="margin-top: 40px;">
+                <h3 style="margin-bottom: 20px; color: var(--text-muted);">EDUCATION</h3>
+                <div class="resume-item">
+                    <div class="resume-header">
+                        <span class="resume-role">B.Tech in Computer Science</span>
+                        <span class="resume-date">2017 - 2021</span>
+                    </div>
+                    <span class="resume-company">Institute of Technology</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="hidden">Projects</h2>
+            <div class="projects-grid hidden">
+                
+                <div class="project-card">
+                    <div class="project-img-placeholder">PROJECT IMG</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Neon Dashboard</h3>
+                        <p class="project-desc">A real-time data visualization dashboard built for monitoring IoT devices.</p>
+                        <div class="tech-stack" style="margin-bottom: 20px;">
+                            <span class="tech-badge">React</span>
+                            <span class="tech-badge">D3.js</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#">Live Demo</a>
+                            <a href="#">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img-placeholder">PROJECT IMG</div>
+                    <div class="project-content">
+                        <h3 class="project-title">AI Chat Bot</h3>
+                        <p class="project-desc">NLP-based chatbot for customer support automation with 95% accuracy.</p>
+                        <div class="tech-stack" style="margin-bottom: 20px;">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">TensorFlow</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#">Live Demo</a>
+                            <a href="#">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img-placeholder">PROJECT IMG</div>
+                    <div class="project-content">
+                        <h3 class="project-title">E-Commerce API</h3>
+                        <p class="project-desc">High-performance backend API handling 10k+ requests per second.</p>
+                        <div class="tech-stack" style="margin-bottom: 20px;">
+                            <span class="tech-badge">Node.js</span>
+                            <span class="tech-badge">MongoDB</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#">Documentation</a>
+                            <a href="#">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements">
+        <div class="container">
+            <h2 class="hidden">Achievements</h2>
+            <div class="achievements-grid hidden">
+                
+                <div class="achievement-card">
+                    <span class="achievement-icon">🏆</span>
+                    <h3>Best Innovation Award</h3>
+                    <p style="color: #888; margin-top: 10px;">Tech Summit 2024</p>
+                </div>
+
+                <div class="achievement-card">
+                    <span class="achievement-icon">📜</span>
+                    <h3>AWS Certified Solutions Architect</h3>
+                    <p style="color: #888; margin-top: 10px;">Professional Level</p>
+                </div>
+
+                <div class="achievement-card">
+                    <span class="achievement-icon">🚀</span>
+                    <h3>50+ Projects Delivered</h3>
+                    <p style="color: #888; margin-top: 10px;">Freelance Milestone</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="hidden">Get In Touch</h2>
+            <div class="contact-container hidden">
+                <div class="contact-info">
+                    <p style="color: #ccc; margin-bottom: 20px;">Interested in working together? Fill out the form or reach out via social media.</p>
+                    <p style="color: var(--accent-color); font-size: 1.2rem; font-weight: bold;">email@example.com</p>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Message"></textarea>
+                    </div>
+                    <button type="submit" class="btn">SEND MESSAGE</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 [Your Name]. All rights reserved. Built with ☕ and Code.</p>
+    </footer>
+
+    <script>
+        // Intersection Observer for Scroll Animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        });
+
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+    </script>
+
+</body>
+</html>
