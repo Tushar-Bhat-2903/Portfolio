@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Futuristic Minimal</title>
+    <title>Tushar Bhat | Portfolio</title>
     <style>
         /* --- CSS VARIABLES & RESET --- */
         :root {
@@ -14,20 +14,12 @@
             --accent-color: #00f3ff; /* Neon Cyan */
             --accent-glow: rgba(0, 243, 255, 0.4);
             --font-main: 'Inter', sans-serif;
-            --font-header: 'Orbitron', sans-serif; /* Futuristic Header Font */
+            --font-header: 'Orbitron', sans-serif;
             --transition: all 0.3s ease;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
@@ -36,314 +28,131 @@
             overflow-x: hidden;
         }
 
-        /* Import Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@500;700&display=swap');
 
         /* --- UTILITIES --- */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        section {
-            padding: 100px 0;
-            position: relative;
-        }
-
-        h1, h2, h3 {
-            font-family: var(--font-header);
-            color: #fff;
-        }
-
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        section { padding: 100px 0; position: relative; }
+        h1, h2, h3 { font-family: var(--font-header); color: #fff; }
+        
         h2 {
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            position: relative;
-            display: inline-block;
+            font-size: 2.5rem; margin-bottom: 50px; text-transform: uppercase; letter-spacing: 2px;
+            position: relative; display: inline-block;
         }
-
         h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 50px;
-            height: 4px;
-            background: var(--accent-color);
+            content: ''; position: absolute; bottom: -10px; left: 0;
+            width: 50px; height: 4px; background: var(--accent-color);
             box-shadow: 0 0 10px var(--accent-glow);
         }
 
         .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            border: 1px solid var(--accent-color);
-            color: var(--accent-color);
-            text-decoration: none;
-            font-family: var(--font-header);
-            letter-spacing: 1px;
-            transition: var(--transition);
-            background: transparent;
-            cursor: pointer;
+            display: inline-block; padding: 12px 30px; border: 1px solid var(--accent-color);
+            color: var(--accent-color); text-decoration: none; font-family: var(--font-header);
+            letter-spacing: 1px; transition: var(--transition); background: transparent; cursor: pointer;
             margin-top: 20px;
         }
+        .btn:hover { background: var(--accent-color); color: #000; box-shadow: 0 0 20px var(--accent-glow); }
 
-        .btn:hover {
-            background: var(--accent-color);
-            color: #000;
-            box-shadow: 0 0 20px var(--accent-glow);
-        }
-
-        /* --- SCROLL ANIMATION CLASSES --- */
-        .hidden {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        .show {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* --- ANIMATIONS --- */
+        .hidden { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .show { opacity: 1; transform: translateY(0); }
 
         /* --- NAVIGATION --- */
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(5, 5, 5, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: fixed; top: 0; width: 100%; background: rgba(5, 5, 5, 0.9);
+            backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .logo {
-            font-family: var(--font-header);
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #fff;
-        }
-        
+        .nav-container { display: flex; justify-content: space-between; align-items: center; padding: 20px; max-width: 1100px; margin: 0 auto; }
+        .logo { font-family: var(--font-header); font-size: 1.5rem; font-weight: 700; color: #fff; }
         .logo span { color: var(--accent-color); }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-size: 0.9rem; transition: var(--transition); text-transform: uppercase; letter-spacing: 1px; }
+        .nav-links a:hover { color: var(--accent-color); }
 
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            color: var(--text-main);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: var(--transition);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-color);
-            text-shadow: 0 0 8px var(--accent-glow);
-        }
-
-        /* --- HERO SECTION --- */
+        /* --- HERO --- */
         #home {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: radial-gradient(circle at 50% 50%, rgba(0, 243, 255, 0.05) 0%, transparent 60%);
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; background: radial-gradient(circle at 50% 50%, rgba(0, 243, 255, 0.05) 0%, transparent 60%);
+        }
+        .hero-content h1 { font-size: 4rem; margin-bottom: 20px; line-height: 1.1; }
+        .hero-content .highlight { color: var(--accent-color); text-shadow: 0 0 20px var(--accent-glow); }
+        .hero-content p { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin: 0 auto; }
+
+        /* --- SKILLS & ABOUT --- */
+        .skills-container { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; justify-content: center; }
+        .skill-badge {
+            padding: 8px 15px; background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 5px; font-size: 0.9rem; color: var(--accent-color);
         }
 
-        .hero-content h1 {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            line-height: 1.1;
-        }
-
-        .hero-content .highlight {
-            color: var(--accent-color);
-            text-shadow: 0 0 20px var(--accent-glow);
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* --- ABOUT ME --- */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .about-text p { margin-bottom: 20px; color: #ccc; }
+        /* --- EXPERIENCE & PROJECTS (SHARED CARD STYLES) --- */
+        .card-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
         
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+        .info-card {
+            background: var(--card-bg); padding: 30px; border-left: 3px solid var(--accent-color);
+            transition: var(--transition); position: relative; overflow: hidden;
+        }
+        .info-card:hover { transform: translateX(10px); background: rgba(255, 255, 255, 0.06); }
+        
+        .card-header { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
+        .card-role { font-weight: bold; font-size: 1.3rem; color: #fff; }
+        .card-date { color: var(--text-muted); font-size: 0.9rem; font-family: var(--font-header); }
+        .card-company { color: var(--accent-color); display: block; font-weight: 600; margin-bottom: 15px; }
+        .card-details ul { list-style-type: none; }
+        .card-details li { position: relative; padding-left: 20px; margin-bottom: 8px; color: #ccc; font-size: 0.95rem; }
+        .card-details li::before { content: '▹'; position: absolute; left: 0; color: var(--accent-color); }
+
+        /* --- IMAGES IN CARDS --- */
+        .card-image-container {
             margin-top: 20px;
-        }
-
-        .tech-badge {
-            padding: 8px 15px;
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 5px;
-            font-size: 0.85rem;
-            color: var(--accent-color);
-        }
-
-        /* --- RESUME --- */
-        .resume-item {
-            background: var(--card-bg);
-            padding: 30px;
-            margin-bottom: 20px;
-            border-left: 3px solid var(--accent-color);
-            transition: var(--transition);
-        }
-
-        .resume-item:hover {
-            transform: translateX(10px);
-            background: rgba(255, 255, 255, 0.06);
-        }
-
-        .resume-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-
-        .resume-role { font-weight: bold; font-size: 1.2rem; color: #fff; }
-        .resume-date { color: var(--text-muted); font-size: 0.9rem; }
-        .resume-company { color: var(--accent-color); margin-bottom: 10px; display: block; }
-
-        /* --- PROJECTS --- */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            overflow: hidden;
-            transition: var(--transition);
-            border-radius: 8px;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-color);
-            box-shadow: 0 10px 30px -10px rgba(0, 243, 255, 0.2);
-        }
-
-        .project-img-placeholder {
             width: 100%;
-            height: 200px;
-            background: linear-gradient(45deg, #111, #222);
+            height: 200px; /* Fixed height for consistency */
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #444;
-            font-family: var(--font-header);
         }
-
-        .project-content { padding: 25px; }
-        .project-title { font-size: 1.4rem; margin-bottom: 10px; color: #fff; }
-        .project-desc { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 20px; }
         
-        .project-links a {
-            color: #fff;
-            margin-right: 15px;
-            font-size: 0.9rem;
-            text-decoration: none;
-            border-bottom: 1px solid var(--accent-color);
+        .card-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: var(--transition);
         }
+        
+        .info-card:hover .card-image-container img { opacity: 1; transform: scale(1.05); }
+        
+        /* Placeholder text if image is missing */
+        .img-placeholder-text { position: absolute; color: #555; font-size: 0.8rem; z-index: 0; }
+
+        /* --- PROJECT GRID SPECIFIC --- */
+        .projects-section .card-grid { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); }
+        .projects-section .info-card { border-left: none; border-top: 3px solid var(--accent-color); }
+        .projects-section .info-card:hover { transform: translateY(-10px); }
 
         /* --- ACHIEVEMENTS --- */
-        .achievements-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+        .achievements-list { list-style: none; display: grid; gap: 20px; }
+        .achievement-item { 
+            background: var(--card-bg); padding: 20px; display: flex; align-items: center; gap: 20px; 
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; 
         }
-
-        .achievement-card {
-            text-align: center;
-            padding: 40px 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-            background: var(--card-bg);
-            border-radius: 10px;
-        }
-        
-        .achievement-icon {
-            font-size: 2rem;
-            color: var(--accent-color);
-            margin-bottom: 15px;
-            display: block;
-        }
+        .trophy-icon { font-size: 2rem; }
 
         /* --- CONTACT --- */
-        .contact-container {
-            display: flex;
-            gap: 50px;
-        }
+        .contact-box { text-align: center; background: var(--card-bg); padding: 50px; border-radius: 10px; border: 1px solid rgba(0, 243, 255, 0.1); }
+        .contact-detail { font-size: 1.2rem; margin: 15px 0; color: #fff; }
+        .contact-detail span { color: var(--accent-color); font-weight: bold; }
 
-        .contact-form {
-            flex: 1;
-        }
-
-        .form-group { margin-bottom: 20px; }
-        
-        input, textarea {
-            width: 100%;
-            padding: 15px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid #333;
-            color: #fff;
-            font-family: var(--font-main);
-            font-size: 1rem;
-            outline: none;
-            transition: var(--transition);
-        }
-
-        input:focus, textarea:focus {
-            border-color: var(--accent-color);
-            background: rgba(0, 243, 255, 0.05);
-        }
-
-        textarea { height: 150px; resize: none; }
-
-        /* --- FOOTER --- */
-        footer {
-            padding: 50px 0;
-            text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* --- MOBILE RESPONSIVENESS --- */
+        /* --- MOBILE --- */
         @media (max-width: 768px) {
             .hero-content h1 { font-size: 2.5rem; }
-            .about-grid, .contact-container { grid-template-columns: 1fr; }
-            .nav-links { display: none; } /* Simple hide for mobile example */
+            .nav-links { display: none; }
+            .card-header { flex-direction: column; gap: 5px; }
+            .projects-section .card-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -351,11 +160,11 @@
 
     <nav>
         <div class="nav-container">
-            <div class="logo">[NAME]<span>.DEV</span></div>
+            <div class="logo">TUSHAR<span>.BHAT</span></div>
             <div class="nav-links">
                 <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#resume">Resume</a>
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
                 <a href="#projects">Projects</a>
                 <a href="#achievements">Awards</a>
                 <a href="#contact">Contact</a>
@@ -365,127 +174,165 @@
 
     <section id="home">
         <div class="container hero-content hidden">
-            <h1>I BUILD THE <br><span class="highlight">FUTURE.</span></h1>
-            <p>Engineer. Developer. Innovator. Crafting high-performance solutions for the digital age.</p>
-            <a href="#projects" class="btn">VIEW WORK</a>
+            <h1>HELLO, I'M <br><span class="highlight">TUSHAR BHAT</span></h1>
+            <p>Drone Engineer | Embedded Systems | Robotics Specialist</p>
+            <div class="skills-container">
+                <span class="skill-badge">ROS / ROS 2</span>
+                <span class="skill-badge">MAVROS</span>
+                <span class="skill-badge">Fusion 360</span>
+                <span class="skill-badge">KiCad</span>
+                <span class="skill-badge">Embedded C</span>
+                <span class="skill-badge">Python</span>
+                <span class="skill-badge">PCB Design</span>
+                <span class="skill-badge">Mission Planning</span>
+            </div>
+            <a href="#contact" class="btn">GET IN TOUCH</a>
         </div>
     </section>
 
-    <section id="about">
+    <section id="experience">
         <div class="container">
-            <h2 class="hidden">About Me</h2>
-            <div class="about-grid hidden">
-                <div class="about-text">
-                    <p>I am a passionate developer focusing on scalable systems and sleek interfaces. With a background in engineering, I bridge the gap between complex backend logic and smooth user experiences.</p>
-                    <p>My approach is simple: clean code, modern tools, and user-centric design.</p>
-                    
-                    <div class="tech-stack">
-                        <span class="tech-badge">Python</span>
-                        <span class="tech-badge">JavaScript</span>
-                        <span class="tech-badge">React</span>
-                        <span class="tech-badge">Node.js</span>
-                        <span class="tech-badge">AWS</span>
-                        <span class="tech-badge">C++</span>
+            <h2 class="hidden">Experience</h2>
+            <div class="card-grid hidden">
+
+                <div class="info-card">
+                    <div class="card-header">
+                        <span class="card-role">Project Intern</span>
+                        <span class="card-date">May 2025 – July 2025</span>
+                    </div>
+                    <span class="card-company">CSIR–National Institute of Oceanography</span>
+                    <div class="card-details">
+                        <ul>
+                            <li>Developed a water-landing UAV using Fusion 360, Pixhawk 6C, and Raspberry Pi 4B running ROS 2 Humble and MAVROS.</li>
+                            <li>Currently authoring a technical paper covering UAV design, thrust-buoyancy analysis, and system architecture.</li>
+                        </ul>
+                    </div>
+                    <div class="card-image-container">
+                        <span class="img-placeholder-text">Add image: images/csir_cert.jpg</span>
+                        <img src="images/csir_cert.jpg" alt="CSIR Experience" onerror="this.style.display='none'">
                     </div>
                 </div>
-                <div class="about-visual">
-                    <div style="width:100%; height:300px; border: 2px solid var(--accent-color); box-shadow: 10px 10px 0 rgba(0,243,255,0.1); display:flex; align-items:center; justify-content:center; color:var(--accent-color);">
-                        [YOUR IMAGE]
+
+                <div class="info-card">
+                    <div class="card-header">
+                        <span class="card-role">Technical Head</span>
+                        <span class="card-date">2023 – Present</span>
+                    </div>
+                    <span class="card-company">Project DronAid</span>
+                    <div class="card-details">
+                        <ul>
+                            <li>Guiding a team of 30+ members in the design and development of UAVs for medical drug delivery.</li>
+                            <li>Working in multidisciplinary groups across aerodynamics, electronics, avionics, and software.</li>
+                            <li>Inventor on a published patent (No. 202541003782).</li>
+                        </ul>
+                    </div>
+                    <div class="card-image-container">
+                        <span class="img-placeholder-text">Add image: images/dronaid.jpg</span>
+                        <img src="images/dronaid.jpg" alt="DronAid Work" onerror="this.style.display='none'">
                     </div>
                 </div>
+
+                <div class="info-card">
+                    <div class="card-header">
+                        <span class="card-role">Undergraduate Research Intern</span>
+                        <span class="card-date">Jan 2025 – Present</span>
+                    </div>
+                    <span class="card-company">MIT Manipal</span>
+                    <div class="card-details">
+                        <ul>
+                            <li><strong>Sensor Fault Detection Using ML:</strong> Developing ML models for real-time sensor fault detection and anomaly classification.</li>
+                            <li><strong>Fluid Analysis:</strong> Qualitative analysis using NIR & Raman Spectroscopy.</li>
+                        </ul>
+                    </div>
+                    <div class="card-image-container">
+                        <span class="img-placeholder-text">Add image: images/mit.jpg</span>
+                        <img src="images/mit.jpg" alt="Research Work" onerror="this.style.display='none'">
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-header">
+                        <span class="card-role">Drone Engineer</span>
+                        <span class="card-date">Jan 2025 – May 2025</span>
+                    </div>
+                    <span class="card-company">Open Horizon Robotics</span>
+                    <div class="card-details">
+                        <ul>
+                            <li>Developed UAV systems for MapMIT and Nakshatra projects.</li>
+                            <li>Designed and tested drone systems for 3D mapping and photogrammetry.</li>
+                        </ul>
+                    </div>
+                    <div class="card-image-container">
+                        <span class="img-placeholder-text">Add image: images/openhorizon.jpg</span>
+                        <img src="images/openhorizon.jpg" alt="Open Horizon Work" onerror="this.style.display='none'">
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <section id="resume">
-        <div class="container">
-            <h2 class="hidden">Resume</h2>
-            
-            <div class="hidden">
-                <h3 style="margin-bottom: 20px; color: var(--text-muted);">EXPERIENCE</h3>
-                
-                <div class="resume-item">
-                    <div class="resume-header">
-                        <span class="resume-role">Senior Engineer</span>
-                        <span class="resume-date">2023 - Present</span>
-                    </div>
-                    <span class="resume-company">Tech Corp Inc.</span>
-                    <p>Leading development of scalable microservices and optimizing system architecture.</p>
-                </div>
-
-                <div class="resume-item">
-                    <div class="resume-header">
-                        <span class="resume-role">Junior Developer</span>
-                        <span class="resume-date">2021 - 2023</span>
-                    </div>
-                    <span class="resume-company">Startup Studio</span>
-                    <p>Developed frontend interfaces and integrated RESTful APIs for fintech solutions.</p>
-                </div>
-            </div>
-
-            <div class="hidden" style="margin-top: 40px;">
-                <h3 style="margin-bottom: 20px; color: var(--text-muted);">EDUCATION</h3>
-                <div class="resume-item">
-                    <div class="resume-header">
-                        <span class="resume-role">B.Tech in Computer Science</span>
-                        <span class="resume-date">2017 - 2021</span>
-                    </div>
-                    <span class="resume-company">Institute of Technology</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
+    <section id="projects" class="projects-section">
         <div class="container">
             <h2 class="hidden">Projects</h2>
-            <div class="projects-grid hidden">
-                
-                <div class="project-card">
-                    <div class="project-img-placeholder">PROJECT IMG</div>
-                    <div class="project-content">
-                        <h3 class="project-title">Neon Dashboard</h3>
-                        <p class="project-desc">A real-time data visualization dashboard built for monitoring IoT devices.</p>
-                        <div class="tech-stack" style="margin-bottom: 20px;">
-                            <span class="tech-badge">React</span>
-                            <span class="tech-badge">D3.js</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#">Live Demo</a>
-                            <a href="#">GitHub</a>
-                        </div>
+            <div class="card-grid hidden">
+
+                <div class="info-card">
+                    <h3 class="card-company">AI-Based Smart Glove for Tremor Detection</h3>
+                    <p style="color:var(--accent-color); font-size:0.8rem; margin-bottom:10px;">ONGOING</p>
+                    <div class="card-details">
+                        <ul>
+                            <li>Designed custom PCB and integrated sensors with Raspberry Pi.</li>
+                            <li>Implementing AI models to classify tremors (Parkinson’s, anxiety, etc.).</li>
+                        </ul>
+                    </div>
+                    <div class="card-image-container">
+                        <span class="img-placeholder-text">Add image: images/glove.jpg</span>
+                        <img src="images/glove.jpg" alt="Smart Glove Project" onerror="this.style.display='none'">
                     </div>
                 </div>
 
-                <div class="project-card">
-                    <div class="project-img-placeholder">PROJECT IMG</div>
-                    <div class="project-content">
-                        <h3 class="project-title">AI Chat Bot</h3>
-                        <p class="project-desc">NLP-based chatbot for customer support automation with 95% accuracy.</p>
-                        <div class="tech-stack" style="margin-bottom: 20px;">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">TensorFlow</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#">Live Demo</a>
-                            <a href="#">GitHub</a>
-                        </div>
+                <div class="info-card">
+                    <h3 class="card-company">Autonomous Medical Delivery Drone</h3>
+                    <p style="color:var(--accent-color); font-size:0.8rem; margin-bottom:10px;">EFT 610 FRAME</p>
+                    <div class="card-details">
+                        <ul>
+                            <li>Built with Pixhawk Orange Cube, RPi 4B, LiDAR obstacle avoidance.</li>
+                            <li>Features precision landing and cold storage capability.</li>
+                        </ul>
+                    </div>
+                    <div class="card-image-container">
+                        <span class="img-placeholder-text">Add image: images/delivery_drone.jpg</span>
+                        <img src="images/delivery_drone.jpg" alt="Medical Drone" onerror="this.style.display='none'">
                     </div>
                 </div>
 
-                <div class="project-card">
-                    <div class="project-img-placeholder">PROJECT IMG</div>
-                    <div class="project-content">
-                        <h3 class="project-title">E-Commerce API</h3>
-                        <p class="project-desc">High-performance backend API handling 10k+ requests per second.</p>
-                        <div class="tech-stack" style="margin-bottom: 20px;">
-                            <span class="tech-badge">Node.js</span>
-                            <span class="tech-badge">MongoDB</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#">Documentation</a>
-                            <a href="#">GitHub</a>
-                        </div>
+                <div class="info-card">
+                    <h3 class="card-company">High-Performance Fixed-Wing UAV</h3>
+                    <div class="card-details">
+                        <ul>
+                            <li>Designed glass fiber fixed-wing UAV with T-Motor propulsion.</li>
+                            <li>Engineered for high-speed, stable, and efficient flight using Pixhawk Orange Cube.</li>
+                        </ul>
+                    </div>
+                    <div class="card-image-container">
+                        <span class="img-placeholder-text">Add image: images/fixed_wing.jpg</span>
+                        <img src="images/fixed_wing.jpg" alt="Fixed Wing UAV" onerror="this.style.display='none'">
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3 class="card-company">Smart Walking Aid</h3>
+                    <p style="color:var(--accent-color); font-size:0.8rem; margin-bottom:10px;">FOR VISUALLY IMPAIRED</p>
+                    <div class="card-details">
+                        <ul>
+                            <li>Raspberry Pi 4-based aid with 360° LiDAR and ultrasonic sensors.</li>
+                            <li>Haptic feedback for obstacle detection and user navigation.</li>
+                        </ul>
+                    </div>
+                    <div class="card-image-container">
+                        <span class="img-placeholder-text">Add image: images/walking_aid.jpg</span>
+                        <img src="images/walking_aid.jpg" alt="Walking Aid" onerror="this.style.display='none'">
                     </div>
                 </div>
 
@@ -496,70 +343,59 @@
     <section id="achievements">
         <div class="container">
             <h2 class="hidden">Achievements</h2>
-            <div class="achievements-grid hidden">
-                
-                <div class="achievement-card">
-                    <span class="achievement-icon">🏆</span>
-                    <h3>Best Innovation Award</h3>
-                    <p style="color: #888; margin-top: 10px;">Tech Summit 2024</p>
-                </div>
-
-                <div class="achievement-card">
-                    <span class="achievement-icon">📜</span>
-                    <h3>AWS Certified Solutions Architect</h3>
-                    <p style="color: #888; margin-top: 10px;">Professional Level</p>
-                </div>
-
-                <div class="achievement-card">
-                    <span class="achievement-icon">🚀</span>
-                    <h3>50+ Projects Delivered</h3>
-                    <p style="color: #888; margin-top: 10px;">Freelance Milestone</p>
-                </div>
-
-            </div>
+            <ul class="achievements-list hidden">
+                <li class="achievement-item">
+                    <span class="trophy-icon">📜</span>
+                    <div>
+                        <h3>Certificate of Appreciation</h3>
+                        <p style="color:#888">Awarded by MIT Manipal</p>
+                    </div>
+                </li>
+                <li class="achievement-item">
+                    <span class="trophy-icon">🥈</span>
+                    <div>
+                        <h3>Vayurvya Rotorcraft: First Runner Up</h3>
+                        <p style="color:#888">NITTE, Karkala</p>
+                    </div>
+                </li>
+                <li class="achievement-item">
+                    <span class="trophy-icon">🥉</span>
+                    <div>
+                        <h3>BITS Goa Quarks: Second Runner Up</h3>
+                        <p style="color:#888">Drone Search & Rescue Event</p>
+                    </div>
+                </li>
+            </ul>
         </div>
     </section>
 
     <section id="contact">
         <div class="container">
-            <h2 class="hidden">Get In Touch</h2>
-            <div class="contact-container hidden">
-                <div class="contact-info">
-                    <p style="color: #ccc; margin-bottom: 20px;">Interested in working together? Fill out the form or reach out via social media.</p>
-                    <p style="color: var(--accent-color); font-size: 1.2rem; font-weight: bold;">email@example.com</p>
+            <h2 class="hidden">Contact Me</h2>
+            <div class="contact-box hidden">
+                <p style="margin-bottom: 30px; color: #ccc;">Feel free to reach out for collaborations or opportunities.</p>
+                
+                <div class="contact-detail">
+                    Email: <span><a href="mailto:tusharbhat2005@gmail.com" style="color:var(--accent-color); text-decoration:none;">tusharbhat2005@gmail.com</a></span>
                 </div>
-                <form class="contact-form">
-                    <div class="form-group">
-                        <input type="text" placeholder="Name">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="Message"></textarea>
-                    </div>
-                    <button type="submit" class="btn">SEND MESSAGE</button>
-                </form>
+                <div class="contact-detail">
+                    Phone: <span><a href="tel:+919446211196" style="color:var(--accent-color); text-decoration:none;">+91 9446211196</a></span>
+                </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2025 [Your Name]. All rights reserved. Built with ☕ and Code.</p>
+        <p>&copy; 2025 Tushar Bhat. Built with Code.</p>
     </footer>
 
     <script>
-        // Intersection Observer for Scroll Animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('show');
             });
         });
-
-        const hiddenElements = document.querySelectorAll('.hidden');
-        hiddenElements.forEach((el) => observer.observe(el));
+        document.querySelectorAll('.hidden').forEach((el) => observer.observe(el));
     </script>
 
 </body>
