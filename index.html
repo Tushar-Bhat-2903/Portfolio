@@ -11,7 +11,7 @@
             --card-bg: rgba(255, 255, 255, 0.03);
             --text-main: #e0e0e0;
             --text-muted: #888888;
-            --accent-color: #00f3ff; /* Neon Cyan */
+            --accent-color: #00f3ff;
             --accent-glow: rgba(0, 243, 255, 0.4);
             --font-main: 'Inter', sans-serif;
             --font-header: 'Orbitron', sans-serif;
@@ -53,6 +53,16 @@
         }
         .btn:hover { background: var(--accent-color); color: #000; box-shadow: 0 0 20px var(--accent-glow); }
 
+        /* --- PDF BUTTON STYLE (NEW) --- */
+        .pdf-btn {
+            display: inline-flex; align-items: center; gap: 10px; margin-top: 15px;
+            padding: 10px 20px; background: rgba(0, 243, 255, 0.05);
+            border: 1px solid rgba(0, 243, 255, 0.3); border-radius: 5px;
+            color: var(--text-main); text-decoration: none; font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        .pdf-btn:hover { background: var(--accent-color); color: #000; border-color: var(--accent-color); }
+
         /* --- ANIMATIONS --- */
         .hidden { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .show { opacity: 1; transform: translateY(0); }
@@ -78,16 +88,15 @@
         .hero-content .highlight { color: var(--accent-color); text-shadow: 0 0 20px var(--accent-glow); }
         .hero-content p { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin: 0 auto; }
 
-        /* --- SKILLS & ABOUT --- */
+        /* --- SKILLS --- */
         .skills-container { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; justify-content: center; }
         .skill-badge {
             padding: 8px 15px; background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 5px; font-size: 0.9rem; color: var(--accent-color);
         }
 
-        /* --- EXPERIENCE & PROJECTS (SHARED CARD STYLES) --- */
+        /* --- CARDS (Experience & Projects) --- */
         .card-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
-        
         .info-card {
             background: var(--card-bg); padding: 30px; border-left: 3px solid var(--accent-color);
             transition: var(--transition); position: relative; overflow: hidden;
@@ -102,34 +111,16 @@
         .card-details li { position: relative; padding-left: 20px; margin-bottom: 8px; color: #ccc; font-size: 0.95rem; }
         .card-details li::before { content: '▹'; position: absolute; left: 0; color: var(--accent-color); }
 
-        /* --- IMAGES IN CARDS --- */
+        /* --- IMAGE PREVIEW STYLE --- */
         .card-image-container {
-            margin-top: 20px;
-            width: 100%;
-            height: 200px; /* Fixed height for consistency */
-            background: #111;
-            border: 1px solid #333;
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            margin-top: 20px; width: 100%; height: 200px; background: #111; border: 1px solid #333;
+            border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center;
         }
-        
-        .card-image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.8;
-            transition: var(--transition);
-        }
-        
+        .card-image-container img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: var(--transition); }
         .info-card:hover .card-image-container img { opacity: 1; transform: scale(1.05); }
-        
-        /* Placeholder text if image is missing */
         .img-placeholder-text { position: absolute; color: #555; font-size: 0.8rem; z-index: 0; }
 
-        /* --- PROJECT GRID SPECIFIC --- */
+        /* --- PROJECTS GRID --- */
         .projects-section .card-grid { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); }
         .projects-section .info-card { border-left: none; border-top: 3px solid var(--accent-color); }
         .projects-section .info-card:hover { transform: translateY(-10px); }
@@ -137,22 +128,24 @@
         /* --- ACHIEVEMENTS --- */
         .achievements-list { list-style: none; display: grid; gap: 20px; }
         .achievement-item { 
-            background: var(--card-bg); padding: 20px; display: flex; align-items: center; gap: 20px; 
+            background: var(--card-bg); padding: 20px; display: flex; flex-direction: column; gap: 15px;
             border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; 
         }
+        .achievement-content { display: flex; align-items: center; gap: 20px; }
         .trophy-icon { font-size: 2rem; }
+        
+        /* Achievement Image Thumbnail */
+        .achievement-img { width: 100%; max-width: 300px; height: 150px; background: #111; border-radius: 5px; overflow: hidden; margin-top: 10px; }
+        .achievement-img img { width: 100%; height: 100%; object-fit: cover; }
 
         /* --- CONTACT --- */
         .contact-box { text-align: center; background: var(--card-bg); padding: 50px; border-radius: 10px; border: 1px solid rgba(0, 243, 255, 0.1); }
         .contact-detail { font-size: 1.2rem; margin: 15px 0; color: #fff; }
         .contact-detail span { color: var(--accent-color); font-weight: bold; }
 
-        /* --- MOBILE --- */
         @media (max-width: 768px) {
             .hero-content h1 { font-size: 2.5rem; }
             .nav-links { display: none; }
-            .card-header { flex-direction: column; gap: 5px; }
-            .projects-section .card-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -183,8 +176,6 @@
                 <span class="skill-badge">KiCad</span>
                 <span class="skill-badge">Embedded C</span>
                 <span class="skill-badge">Python</span>
-                <span class="skill-badge">PCB Design</span>
-                <span class="skill-badge">Mission Planning</span>
             </div>
             <a href="#contact" class="btn">GET IN TOUCH</a>
         </div>
@@ -203,14 +194,11 @@
                     <span class="card-company">CSIR–National Institute of Oceanography</span>
                     <div class="card-details">
                         <ul>
-                            <li>Developed a water-landing UAV using Fusion 360, Pixhawk 6C, and Raspberry Pi 4B running ROS 2 Humble and MAVROS.</li>
-                            <li>Currently authoring a technical paper covering UAV design, thrust-buoyancy analysis, and system architecture.</li>
+                            <li>Developed a water-landing UAV using Fusion 360, Pixhawk 6C, and ROS 2.</li>
+                            <li>Authoring a technical paper covering UAV design and thrust-buoyancy analysis.</li>
                         </ul>
                     </div>
-                    <div class="card-image-container">
-                        <span class="img-placeholder-text">Add image: images/csir_cert.jpg</span>
-                        <img src="images/csir_cert.jpg" alt="CSIR Experience" onerror="this.style.display='none'">
-                    </div>
+                    <a href="documents/csir.pdf" target="_blank" class="pdf-btn">📄 View Certificate (PDF)</a>
                 </div>
 
                 <div class="info-card">
@@ -221,32 +209,13 @@
                     <span class="card-company">Project DronAid</span>
                     <div class="card-details">
                         <ul>
-                            <li>Guiding a team of 30+ members in the design and development of UAVs for medical drug delivery.</li>
-                            <li>Working in multidisciplinary groups across aerodynamics, electronics, avionics, and software.</li>
+                            <li>Guiding 30+ members in UAV design for medical drug delivery.</li>
                             <li>Inventor on a published patent (No. 202541003782).</li>
                         </ul>
                     </div>
                     <div class="card-image-container">
-                        <span class="img-placeholder-text">Add image: images/dronaid.jpg</span>
+                        <span class="img-placeholder-text">Upload: images/dronaid.jpg</span>
                         <img src="images/dronaid.jpg" alt="DronAid Work" onerror="this.style.display='none'">
-                    </div>
-                </div>
-
-                <div class="info-card">
-                    <div class="card-header">
-                        <span class="card-role">Undergraduate Research Intern</span>
-                        <span class="card-date">Jan 2025 – Present</span>
-                    </div>
-                    <span class="card-company">MIT Manipal</span>
-                    <div class="card-details">
-                        <ul>
-                            <li><strong>Sensor Fault Detection Using ML:</strong> Developing ML models for real-time sensor fault detection and anomaly classification.</li>
-                            <li><strong>Fluid Analysis:</strong> Qualitative analysis using NIR & Raman Spectroscopy.</li>
-                        </ul>
-                    </div>
-                    <div class="card-image-container">
-                        <span class="img-placeholder-text">Add image: images/mit.jpg</span>
-                        <img src="images/mit.jpg" alt="Research Work" onerror="this.style.display='none'">
                     </div>
                 </div>
 
@@ -259,12 +228,27 @@
                     <div class="card-details">
                         <ul>
                             <li>Developed UAV systems for MapMIT and Nakshatra projects.</li>
-                            <li>Designed and tested drone systems for 3D mapping and photogrammetry.</li>
+                            <li>Designed and tested drone systems for 3D mapping.</li>
+                        </ul>
+                    </div>
+                    <a href="documents/open_horizon.pdf" target="_blank" class="pdf-btn">📄 View Certificate (PDF)</a>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-header">
+                        <span class="card-role">Research Intern</span>
+                        <span class="card-date">Jan 2025 – Present</span>
+                    </div>
+                    <span class="card-company">MIT Manipal</span>
+                    <div class="card-details">
+                        <ul>
+                            <li>Sensor Fault Detection Using ML for real-time anomaly classification.</li>
+                            <li>Qualitative fluid analysis using NIR & Raman Spectroscopy.</li>
                         </ul>
                     </div>
                     <div class="card-image-container">
-                        <span class="img-placeholder-text">Add image: images/openhorizon.jpg</span>
-                        <img src="images/openhorizon.jpg" alt="Open Horizon Work" onerror="this.style.display='none'">
+                        <span class="img-placeholder-text">Upload: images/mit.jpg</span>
+                        <img src="images/mit.jpg" alt="Research" onerror="this.style.display='none'">
                     </div>
                 </div>
 
@@ -276,63 +260,22 @@
         <div class="container">
             <h2 class="hidden">Projects</h2>
             <div class="card-grid hidden">
-
+                
                 <div class="info-card">
-                    <h3 class="card-company">AI-Based Smart Glove for Tremor Detection</h3>
-                    <p style="color:var(--accent-color); font-size:0.8rem; margin-bottom:10px;">ONGOING</p>
-                    <div class="card-details">
-                        <ul>
-                            <li>Designed custom PCB and integrated sensors with Raspberry Pi.</li>
-                            <li>Implementing AI models to classify tremors (Parkinson’s, anxiety, etc.).</li>
-                        </ul>
-                    </div>
+                    <h3 class="card-company">AI-Based Smart Glove</h3>
+                    <div class="card-details"><ul><li>Custom PCB, Raspberry Pi, and AI for tremor detection.</li></ul></div>
                     <div class="card-image-container">
-                        <span class="img-placeholder-text">Add image: images/glove.jpg</span>
-                        <img src="images/glove.jpg" alt="Smart Glove Project" onerror="this.style.display='none'">
+                        <span class="img-placeholder-text">Upload: images/glove.jpg</span>
+                        <img src="images/glove.jpg" alt="Glove" onerror="this.style.display='none'">
                     </div>
                 </div>
 
                 <div class="info-card">
-                    <h3 class="card-company">Autonomous Medical Delivery Drone</h3>
-                    <p style="color:var(--accent-color); font-size:0.8rem; margin-bottom:10px;">EFT 610 FRAME</p>
-                    <div class="card-details">
-                        <ul>
-                            <li>Built with Pixhawk Orange Cube, RPi 4B, LiDAR obstacle avoidance.</li>
-                            <li>Features precision landing and cold storage capability.</li>
-                        </ul>
-                    </div>
+                    <h3 class="card-company">Medical Delivery Drone</h3>
+                    <div class="card-details"><ul><li>Pixhawk Orange Cube, LiDAR avoidance, precision landing.</li></ul></div>
                     <div class="card-image-container">
-                        <span class="img-placeholder-text">Add image: images/delivery_drone.jpg</span>
-                        <img src="images/delivery_drone.jpg" alt="Medical Drone" onerror="this.style.display='none'">
-                    </div>
-                </div>
-
-                <div class="info-card">
-                    <h3 class="card-company">High-Performance Fixed-Wing UAV</h3>
-                    <div class="card-details">
-                        <ul>
-                            <li>Designed glass fiber fixed-wing UAV with T-Motor propulsion.</li>
-                            <li>Engineered for high-speed, stable, and efficient flight using Pixhawk Orange Cube.</li>
-                        </ul>
-                    </div>
-                    <div class="card-image-container">
-                        <span class="img-placeholder-text">Add image: images/fixed_wing.jpg</span>
-                        <img src="images/fixed_wing.jpg" alt="Fixed Wing UAV" onerror="this.style.display='none'">
-                    </div>
-                </div>
-
-                <div class="info-card">
-                    <h3 class="card-company">Smart Walking Aid</h3>
-                    <p style="color:var(--accent-color); font-size:0.8rem; margin-bottom:10px;">FOR VISUALLY IMPAIRED</p>
-                    <div class="card-details">
-                        <ul>
-                            <li>Raspberry Pi 4-based aid with 360° LiDAR and ultrasonic sensors.</li>
-                            <li>Haptic feedback for obstacle detection and user navigation.</li>
-                        </ul>
-                    </div>
-                    <div class="card-image-container">
-                        <span class="img-placeholder-text">Add image: images/walking_aid.jpg</span>
-                        <img src="images/walking_aid.jpg" alt="Walking Aid" onerror="this.style.display='none'">
+                        <span class="img-placeholder-text">Upload: images/delivery_drone.jpg</span>
+                        <img src="images/delivery_drone.jpg" alt="Drone" onerror="this.style.display='none'">
                     </div>
                 </div>
 
@@ -344,27 +287,31 @@
         <div class="container">
             <h2 class="hidden">Achievements</h2>
             <ul class="achievements-list hidden">
+                
                 <li class="achievement-item">
-                    <span class="trophy-icon">📜</span>
-                    <div>
-                        <h3>Certificate of Appreciation</h3>
-                        <p style="color:#888">Awarded by MIT Manipal</p>
+                    <div class="achievement-content">
+                        <span class="trophy-icon">🥈</span>
+                        <div>
+                            <h3>Vayurvya Rotorcraft: First Runner Up</h3>
+                            <p style="color:#888">NITTE, Karkala</p>
+                        </div>
+                    </div>
+                    <div class="achievement-img">
+                         <span class="img-placeholder-text">Upload: images/nitte_cert.jpg</span>
+                         <img src="images/nitte_cert.jpg" alt="Certificate" onerror="this.style.display='none'">
                     </div>
                 </li>
+
                 <li class="achievement-item">
-                    <span class="trophy-icon">🥈</span>
-                    <div>
-                        <h3>Vayurvya Rotorcraft: First Runner Up</h3>
-                        <p style="color:#888">NITTE, Karkala</p>
+                    <div class="achievement-content">
+                        <span class="trophy-icon">🥉</span>
+                        <div>
+                            <h3>BITS Goa Quarks: Second Runner Up</h3>
+                            <p style="color:#888">Drone Search & Rescue Event</p>
+                        </div>
                     </div>
                 </li>
-                <li class="achievement-item">
-                    <span class="trophy-icon">🥉</span>
-                    <div>
-                        <h3>BITS Goa Quarks: Second Runner Up</h3>
-                        <p style="color:#888">Drone Search & Rescue Event</p>
-                    </div>
-                </li>
+
             </ul>
         </div>
     </section>
@@ -373,20 +320,15 @@
         <div class="container">
             <h2 class="hidden">Contact Me</h2>
             <div class="contact-box hidden">
-                <p style="margin-bottom: 30px; color: #ccc;">Feel free to reach out for collaborations or opportunities.</p>
-                
-                <div class="contact-detail">
-                    Email: <span><a href="mailto:tusharbhat2005@gmail.com" style="color:var(--accent-color); text-decoration:none;">tusharbhat2005@gmail.com</a></span>
-                </div>
-                <div class="contact-detail">
-                    Phone: <span><a href="tel:+919446211196" style="color:var(--accent-color); text-decoration:none;">+91 9446211196</a></span>
-                </div>
+                <p style="margin-bottom: 30px; color: #ccc;">Open for opportunities.</p>
+                <div class="contact-detail">Email: <span><a href="mailto:tusharbhat2005@gmail.com" style="color:var(--accent-color);">tusharbhat2005@gmail.com</a></span></div>
+                <div class="contact-detail">Phone: <span><a href="tel:+919446211196" style="color:var(--accent-color);">+91 9446211196</a></span></div>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2025 Tushar Bhat. Built with Code.</p>
+        <p>&copy; 2025 Tushar Bhat.</p>
     </footer>
 
     <script>
@@ -397,6 +339,5 @@
         });
         document.querySelectorAll('.hidden').forEach((el) => observer.observe(el));
     </script>
-
 </body>
 </html>
